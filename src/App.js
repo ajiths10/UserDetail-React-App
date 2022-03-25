@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import UserDetails from "./components/UserDetails/UserDetails";
-import UserForm from "./components/UserForm/UserForm";
-import "./App.css";
+import React, { useState } from 'react';
 
-const users = [];
+import AddUser from './components/Users/AddUser';
+import UsersList from './components/Users/UsersList';
 
 function App() {
-  const [newUserDetails, setUserDetails] = useState(users);
+  const [usersList, setUsersList] = useState([]);
 
-  const formdataPassing = (detail) => {
-    setUserDetails((preuser) => {
-      return [detail, ...preuser];
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
   };
 
   return (
-    <div className="main-class">
-      <UserForm onFormData={formdataPassing} />
-      <UserDetails data={newUserDetails} />
+    <div>
+      <AddUser onAddUser={addUserHandler} />
+      <UsersList users={usersList} />
     </div>
   );
 }

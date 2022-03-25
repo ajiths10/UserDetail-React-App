@@ -21,7 +21,7 @@ const UserForm = (props) => {
       age: enteredAgeValue,
     };
     
-    if (enteredNameValue === "" && enteredAgeValue === "") {
+    if (enteredNameValue.trim().length === 0 && enteredAgeValue.trim().length === 0) {
       console.log("Please enter correct fields");
     } else {
       props.onFormData(userdata);
